@@ -3,8 +3,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
-
-
 import cookieParser from "cookie-parser";
 import path from "path";
 import bodyParser from 'body-parser';
@@ -34,13 +32,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.listen(3000, () => {
-  console.log("Server is running on port 3000!");
+  console.log("User Server is running on port 3000!");
 });
 
 
 
-app.use("/api/user", userRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/api/userService/user", userRoutes);
+app.use("/api/userService/auth", authRoutes);
 
 
 

@@ -3,30 +3,57 @@ import mongoose from 'mongoose';
 const IssueSchema = new mongoose.Schema({
     
     
-    firstname: {
+    issueid: {
+        type: String
+    },
+    title: {
         type: String,
         required: true
     },
-    lastname: {
-        type: String,
-        required: true
-    },
-    fullname: {
+    description: {
         type: String,
         required: true
     },
    
-    email: {
+    status: {
         type: String,
         required: true
     },
     
-    password: {
+    priority: {
+        type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        required: true
+    },
+    department: {
+        type: String,
+        required: true
+    },
+    reportedby: {
+        type: String,
+        required: true
+    },
+    assignedto: {
+        type: String,
+        required: true
+    },
+    attachments: {
+        type: String,
+        required: true
+    },
+    tags: {
+        type: String,
+        required: true
+    },
+    comments: {
         type: String,
         required: true
     }
 });
 
-const User = mongoose.model("User", UserSchema);
+const Issue = mongoose.model("Issue", IssueSchema);
 
-export default User;
+export default Issue;

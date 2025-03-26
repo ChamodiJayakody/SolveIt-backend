@@ -6,6 +6,15 @@ export const test = (req, res) => {
   res.json({ message: "API is working!" });
 };
 
+export const getIssues = async (req, res, next) => {
+  try {
+    const issues = await Issue.find();
+    res.status(200).json(issues);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch issues", error: error.message });
+  }
+};
+
 export const createIssue = async (req, res, next) => {
   try {
     const {

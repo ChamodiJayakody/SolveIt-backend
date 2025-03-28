@@ -22,13 +22,13 @@ mongoose
   });
 
 const __dirname = path.resolve();
+const app = express(); // Initialize the app here
 
+app.use(cors({
+  origin: 'http://localhost:5173', // Replace with your frontend's URL
+  credentials: true, // Allow cookies to be sent
+}));
 
-
-const app = express();
-
-
-app.use(cors()); // Enable CORS
 app.use(express.json());
 app.use(cookieParser());
 
@@ -36,19 +36,11 @@ app.listen(3001, () => {
   console.log("Ticket Server is running on port 3001!");
 });
 
-
 app.use("/api/ticketService/", ticketRoutes);
 app.use("/api/issueService/", issueRoutes);
 
-
-
 app.use(bodyParser.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 app.use(bodyParser.json());
-
-// app.use(express.static(path.join(__dirname, "../refaa-client/dist")));
-
-
-
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -59,11 +51,3 @@ app.use((err, req, res, next) => {
     message,
   });
 });
-
-
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../refaa-client/dist/index.html"));
-// });
-
-
-

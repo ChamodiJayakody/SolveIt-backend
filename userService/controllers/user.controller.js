@@ -1,19 +1,6 @@
 import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import User from "../models/users/User.model.js";
-import multer from 'multer';
-import path from 'path';
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
-  },
-});
-
-const upload = multer({ storage });
 
 export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.userId) {
@@ -52,7 +39,6 @@ export const updateUser = async (req, res, next) => {
           lastname: req.body.lastname,
           fullname: req.body.fullname,
           email: req.body.email,
-          profilePicture: req.file ? `/uploads/${req.file.filename}` : req.body.profilePicture,
         },
       },
       { new: true }
@@ -124,4 +110,3 @@ export const test = (req, res) => {
   res.status(200).json({ message: "Test route is working" });
 };
 
-export { upload };

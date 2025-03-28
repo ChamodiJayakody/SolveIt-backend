@@ -7,14 +7,13 @@ import {
   signout,
   test,
   updateUser,
-  upload,
 } from '../controllers/user.controller.js';
 import { verifyToken } from '../utils/verifyUser.js';
 
 const router = express.Router();
 
 router.get('/test', test);
-router.put('/update/:userId', verifyToken, upload.single('profilePicture'), updateUser);
+router.put('/update/:userId', verifyToken, updateUser);
 router.delete('/delete/:userId', verifyToken, deleteUser);
 router.put('/upgrade/:userId', verifyToken, changeIsMemberStatus);
 router.post('/signout', signout);
